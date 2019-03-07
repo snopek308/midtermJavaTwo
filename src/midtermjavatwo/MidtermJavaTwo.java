@@ -16,7 +16,7 @@ public class MidtermJavaTwo {
     String usersChoice;
     
     //setting up new garage to park cars in
-    Garage garage = new Garage();
+    Garage carPort = new Garage();
     
     
     do{
@@ -28,10 +28,13 @@ public class MidtermJavaTwo {
             String choice2 = keyboard.nextLine();
                 switch(choice2) {
                     
-                    case "1": //Check In Car
+                    case "1": 
+                    {
+                        Car c = new Car();
+                        carPort.addCar(c);
                         //Give User Car ID Number
                     break;
-                    
+                    }
                     case "2": getMenuOne();
                     break;
                 }
@@ -44,10 +47,11 @@ public class MidtermJavaTwo {
                     //Check out car
                     case "1": checkOutCar();
                     String cTicketNumber = keyboard.nextLine();
+                    carPort.leaveCar(Integer.parseInt(cTicketNumber));
                     
                     break;
                         
-                    case "2": //Lost Ticket
+                    case "2": carPort.lostTicket();
                     break;
                         
                         
@@ -56,18 +60,22 @@ public class MidtermJavaTwo {
                 }
             break;
                 //Close Garage Program
-            case "3": exitProgram();
+            
+            case "3": carPort.displayAll();
+            
+            //close garage
+            case "4": exitProgram();
             break;
                 
             
-            case "4": exitProgram();
+            case "5": exitProgram();
             break;
                 
             default: getMenuOne();
             break;
         }
         
-    }while (!endProgram);
+    }while (endProgram);
         
     
     
@@ -84,8 +92,9 @@ public class MidtermJavaTwo {
         System.out.println("Choose your option below: ");
         System.out.println("1 - Checking into the garage");
         System.out.println("2 - Checking out of the garage");
-        System.out.println("3 - Close Garage");
-        System.out.println("4 - Exit Program");
+        System.out.println("3 - Check cars in the garage");
+        System.out.println("4 - Close Garage");
+        System.out.println("5 - Exit Program");
     }
     
     public static void exitProgram()
@@ -97,6 +106,7 @@ public class MidtermJavaTwo {
         switch(exitChoice.toUpperCase())
         {
             case "Y": System.out.println("Thank you for using Best Value Parking Garage");
+            
             break;
                 
             case "N": getMenuOne();

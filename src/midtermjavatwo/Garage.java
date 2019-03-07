@@ -1,6 +1,8 @@
 package midtermjavatwo;
 
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,6 +27,7 @@ public class Garage {
     private double lostTicketRev;
     private double checkInRev;
     private int carCount;
+    Boolean carFound = false;
 
     
     //method addCar
@@ -46,19 +49,71 @@ public class Garage {
         
         //adding a car to the Arraylist carGarage
         carGarage.add(c);
-        System.out.println("Your car ticket number is: " + c.getID());
+        c.Display();
     }
     
     public void leaveCar(int ID)
     {
+        double cost = 0;
+        int carPosition = 0;
         for(int i = 0; i < carGarage.size(); i++)
         {
             if(carGarage.get(i).getID() == ID)
             {
+                carPosition = i;
+                carFound = true;
                 Car c = carGarage.get(i);
-                c.getTime();
+                
+                int randTime;
+                randTime =((int)Math.random() * 10) + 13;
+                LocalTime leaveTime = LocalTime.of(randTime, 0);
+                Duration d = Duration.between(leaveTime, c.getTime());
+                
+                if (d.toHours() <= 3)
+                {
+                    cost = 5;
+                }
+                else if (d.toHours() <= 12)
+                {
+                    cost = 5 + (d.toHours() - 3);
+                }
+                else
+                {
+                    cost = 15;
+                }
+                
+                totalRevenue += cost;
+                System.out.println("Thank you for using Best Value Parking Garage");
+                System.out.println(d.toHours() + "hours parked");
+                System.out.println("Total Cost: $" + cost + "\n");
                 
             }
+        }
+        if (carFound)
+        {
+            carGarage.remove(carPosition);
+        }
+        else
+        {
+            System.out.println("Car not found!\n");
+        }
+        
+        
+    }
+    
+    public void lostTicket()
+    {
+        totalRevenue += 25;
+        System.out.println("Thank you for using Best Value Parking Garage");
+        System.out.println("You owe $25");
+    }
+    
+    public void displayAll()
+    {
+        for(int i = 0; i < carGarage.size(); i++)
+        {
+            carGarage.get(i).Display();
+            System.out.println();
         }
     }
     

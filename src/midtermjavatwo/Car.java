@@ -2,6 +2,7 @@ package midtermjavatwo;
 
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
  */
 public class Car {
     
-    private LocalDateTime time;
+    private LocalTime time;
     private int ID;
 
     //get methods
@@ -26,13 +27,15 @@ public class Car {
     //whenever we make a new car, it sets it to the whatever the current time it
     public Car()
     {
-        this.time = LocalDateTime.now();
+        int randTime;
+        randTime = ((int)Math.random() * 5) + 7;
+        this.time = LocalTime.of(randTime, 0);
     }
     
     //returning the variable time
-    public LocalDateTime getTime()
+    public LocalTime getTime()
     {
-       return time; 
+       return time;
     }
     
     //returns whatever is in the int ID
@@ -49,7 +52,11 @@ public class Car {
         ID = i;
     }
     
-    
+    public void Display()
+    {
+        System.out.println("You checked in at " + getTime().getHour() + ":00");
+        System.out.println("Your car ticket number is: " + getID());
+    }
     
     
     
