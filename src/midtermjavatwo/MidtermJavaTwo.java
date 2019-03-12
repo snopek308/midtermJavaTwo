@@ -85,7 +85,6 @@ public class MidtermJavaTwo {
     public static void getMenuOne()
     {
         System.out.println();
-        System.out.println();
         System.out.println("Best Value Parking Garage");
         System.out.println("========================");
         System.out.println();
@@ -116,7 +115,6 @@ public class MidtermJavaTwo {
     public static void getMenuTwo()
     {
         System.out.println();
-        System.out.println();
         System.out.println("Best Value Parking Garage");
         System.out.println("========================");
         System.out.println();
@@ -127,7 +125,6 @@ public class MidtermJavaTwo {
     
     public static void getMenuThree()
     {
-        System.out.println();
         System.out.println();
         System.out.println("Best Value Parking Garage");
         System.out.println("========================");
